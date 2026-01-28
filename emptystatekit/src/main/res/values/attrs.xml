@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="EmptyStateView">
+
+        <attr name="es_icon" format="reference" />
+        <attr name="es_title" format="string" />
+        <attr name="es_message" format="string" />
+        <attr name="es_buttonText" format="string" />
+
+    </declare-styleable>
+
+</resources>
