@@ -82,75 +82,96 @@ class EmptyStateView @JvmOverloads constructor(
 
     fun showNoInternet(
         @DrawableRes icon: Int? = null,
-        message: String? = null
+        message: String? = null,
+        actionText: String = "Retry",
+        onActionClick: (() -> Unit)? = null
     ) {
         val state = EmptyState.NO_INTERNET
         renderState(
             iconRes = icon ?: state.defaultIcon,
             titleText = state.defaultTitle,
-            messageText = message ?: state.defaultMessage
+            messageText = message ?: state.defaultMessage,
+            actionText = if (onActionClick != null) actionText else null,
+            onActionClick = onActionClick
         )
     }
 
     fun showNoData(
         @DrawableRes icon: Int? = null,
-        message: String? = null
+        message: String? = null,
+        actionText: String = "Refresh",
+        onActionClick: (() -> Unit)? = null
     ) {
         val state = EmptyState.NO_DATA
         renderState(
             iconRes = icon ?: state.defaultIcon,
             titleText = state.defaultTitle,
-            messageText = message ?: state.defaultMessage
+            messageText = message ?: state.defaultMessage,
+            actionText = if (onActionClick != null) actionText else null,
+            onActionClick = onActionClick
         )
     }
 
     fun showError(
         message: String? = null,
-        @DrawableRes icon: Int? = null
+        @DrawableRes icon: Int? = null,
+        actionText: String = "Retry",
+        onActionClick: (() -> Unit)? = null
     ) {
         val state = EmptyState.ERROR
         renderState(
             iconRes = icon ?: state.defaultIcon,
             titleText = state.defaultTitle,
-            messageText = message ?: state.defaultMessage
+            messageText = message ?: state.defaultMessage,
+            actionText = if (onActionClick != null) actionText else null,
+            onActionClick = onActionClick
         )
     }
+
 
     private fun renderState(
         @DrawableRes iconRes: Int?,
         titleText: String?,
         messageText: String?,
-        buttonText: String? = null
+        actionText: String? = null,
+        onActionClick: (() -> Unit)? = null
     ) {
         show()
 
-        iconRes?.let {
-            icon.setImageResource(it)
+        // Icon
+        if (iconRes != null) {
+            icon.setImageResource(iconRes)
             icon.isVisible = true
-        } ?: run {
+        } else {
             icon.isVisible = false
         }
 
-        titleText?.let {
-            title.text = it
+        // Title
+        if (titleText != null) {
+            title.text = titleText
             title.isVisible = true
-        } ?: run {
+        } else {
             title.isVisible = false
         }
 
-        messageText?.let {
-            message.text = it
+        // Message
+        if (messageText != null) {
+            message.text = messageText
             message.isVisible = true
-        } ?: run {
+        } else {
             message.isVisible = false
         }
 
-        buttonText?.let {
-            action.text = it
+        // Action button
+        if (actionText != null && onActionClick != null) {
+            action.text = actionText
+            action.setOnClickListener { onActionClick() }
             action.isVisible = true
-        } ?: run {
+        } else {
             action.isVisible = false
+            action.setOnClickListener(null)
         }
     }
+
 
 }

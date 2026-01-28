@@ -23,19 +23,11 @@ class MainActivity : AppCompatActivity() {
         emptyView.setOnActionClick {
             Toast.makeText(this, "Retry clicked", Toast.LENGTH_SHORT).show()
         }
-        // Default
-        emptyView.showNoInternet()
-
-// Custom message
-        emptyView.showNoInternet(
-            message = "Turn on Wi-Fi or Mobile Data"
-        )
-
-// Fully custom
-        emptyView.showError(
-            icon = com.ext.emptystatekit.R.drawable.ic_error,
-            message = "Server not responding"
-        )
+        emptyView.showNoData(
+            actionText = "Reload"
+        ) {
+            //loadAgain()
+        }
 
     }
 }
