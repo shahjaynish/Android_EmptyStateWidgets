@@ -69,7 +69,7 @@ dependencyResolutionManagement {
 ### Add Dependency
 ```
 dependencies {
-	        implementation 'com.github.Excelsior-Technologies-Community:Android_AppDialogs:1.0.0'
+	        implementation 'com.github.Excelsior-Technologies-Community:Android_EmptyStateWidgets:1.0.0'
 	}
 ```
 
