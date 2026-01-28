@@ -3,7 +3,7 @@ package com.ext.emptystatekit.ui
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.widget.Button
+import com.google.android.material.button.MaterialButton
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -21,7 +21,7 @@ class EmptyStateView @JvmOverloads constructor(
     private val icon: ImageView
     private val title: TextView
     private val message: TextView
-    private val action: Button
+    private val action: MaterialButton
 
     init {
         orientation = VERTICAL
@@ -35,6 +35,7 @@ class EmptyStateView @JvmOverloads constructor(
         action = findViewById(R.id.esAction)
 
         applyAttributes(attrs)
+        applyButtonCustomization(attrs)
     }
 
     private fun applyAttributes(attrs: AttributeSet?) {
@@ -172,6 +173,48 @@ class EmptyStateView @JvmOverloads constructor(
             action.setOnClickListener(null)
         }
     }
+
+    private fun applyButtonCustomization(attrs: AttributeSet?) {
+        attrs ?: return
+
+        val ta = context.obtainStyledAttributes(attrs, R.styleable.EmptyStateView)
+
+        // Background color
+        ta.getColor(
+            R.styleable.EmptyStateView_es_buttonBackgroundColor,
+            -1
+        ).takeIf { it != -1 }?.let {
+            action.setBackgroundColor(it)
+        }
+
+        // Text color
+        ta.getColor(
+            R.styleable.EmptyStateView_es_buttonTextColor,
+            -1
+        ).takeIf { it != -1 }?.let {
+            action.setTextColor(it)
+        }
+
+        // Corner radius (MaterialButton ONLY)
+        ta.getDimension(
+            R.styleable.EmptyStateView_es_buttonCornerRadius,
+            -1f
+        ).takeIf { it != -1f }?.let {
+            action.cornerRadius = it.toInt()
+        }
+
+        // Full style override (highest priority)
+        ta.getResourceId(
+            R.styleable.EmptyStateView_es_buttonStyle,
+            0
+        ).takeIf { it != 0 }?.let {
+            action.setTextAppearance(it)
+        }
+
+        ta.recycle()
+    }
+
+
 
 
 }

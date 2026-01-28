@@ -3,11 +3,19 @@
 
     <declare-styleable name="EmptyStateView">
 
-        <attr name="es_icon" format="reference" />
-        <attr name="es_title" format="string" />
-        <attr name="es_message" format="string" />
-        <attr name="es_buttonText" format="string" />
+        <!-- existing -->
+        <attr name="es_icon" format="reference"/>
+        <attr name="es_title" format="string"/>
+        <attr name="es_message" format="string"/>
+        <attr name="es_buttonText" format="string"/>
+
+        <!-- NEW: button customization -->
+        <attr name="es_buttonBackgroundColor" format="color"/>
+        <attr name="es_buttonTextColor" format="color"/>
+        <attr name="es_buttonCornerRadius" format="dimension"/>
+        <attr name="es_buttonStyle" format="reference"/>
 
     </declare-styleable>
+
 
 </resources>
