@@ -27,6 +27,32 @@ It is designed to be easy to integrate, developer-friendly, and fully customizab
 
 ---
 
+### Preview
+
+<p align="center">
+<table>
+  <tr>
+    <th align="center">No Data</th>
+    <th align="center">Error</th>
+    <th align="center">No Internet</th>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="assets/img1.jpg" width="360" />
+    </td>
+    <td align="center">
+      <img src="assets/img2.jpg" width="360" />
+    </td>
+    <td align="center">
+      <img src="assets/img3.jpg" width="360" />
+    </td>
+  </tr>
+</table>
+</p>
+
+
+---
+
 ## Installation (JitPack)
 
 ### 1️⃣ Add JitPack to your **root `settings.gradle` or `build.gradle`**
@@ -59,7 +85,10 @@ Add EmptyStateView to your layout:
     android:layout_height="match_parent"
     app:es_title="No Data"
     app:es_message="Nothing to show here"
-    app:es_buttonText="Retry"/>
+    app:es_buttonText="Retry"
+	app:es_buttonBackgroundColor="#FF5722"
+    app:es_buttonTextColor="@android:color/white"
+    app:es_buttonCornerRadius="24dp"/>
 ```
 
 ### Usage (Kotlin – Recommended)
@@ -149,6 +178,34 @@ app:es_message="Nothing here yet"
 app:es_buttonText="Reload"
 ```
 
+You can customize:
+- Button background color
+- Button text color
+- Button corner radius (rounded shape)
+- Or apply a completely custom button style
+
+✔ Rounded corners  
+✔ Custom background color  
+✔ Works on all devices  
+
+### Apply a Fully Custom Button Style
+
+```xml
+<style name="MyEmptyStateButton">
+    <item name="android:textColor">@android:color/white</item>
+    <item name="android:textAllCaps">false</item>
+    <item name="cornerRadius">20dp</item>
+    <item name="backgroundTint">@color/purple_500</item>
+</style>
+```
+
+```xml
+<com.ext.emptystatekit.ui.EmptyStateView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:es_buttonStyle="@style/MyEmptyStateButton"/>
+```
+
 ---
 
 ### Included Default States
@@ -160,6 +217,15 @@ app:es_buttonText="Reload"
 | Error        | `ic_error`       | Retry          |
 
 **All can be overridden**
+
+### Supported Button Attributes
+
+| Attribute | Description |
+|---------|------------|
+| `es_buttonBackgroundColor` | Button background color |
+| `es_buttonTextColor` | Button text color |
+| `es_buttonCornerRadius` | Rounded corner radius |
+| `es_buttonStyle` | Apply full custom button style |
 
 ---
 
